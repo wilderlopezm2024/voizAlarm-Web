@@ -1,0 +1,57 @@
+<!-- Modal -->
+<div class="fixed inset-0 flex items-center justify-center bg-gray-900/50">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-2/3 h-120 border border-blue-400 flex justify-center items-center relative">
+        <div class="w-1/3">
+            <h2 class="text-lg font-semibold text-center">{{tipo === 0 ? 'Agregar' : 'Modificar'}} evento con sonido</h2>
+            <!-- Formulario -->
+            <form [formGroup]="eventoForm" (ngSubmit)="submitForm()">
+                <div class="mt-4">
+                    <div class="relative">
+                        <label class="block text-sm font-medium">Evento</label>
+                        <input 
+                            formControlName="evento" 
+                            type="text" 
+                            class="w-full border-b-2 focus:outline-none focus:border-blue-500 focus:border-2 p-2 mt-1" 
+                            placeholder="Nombre del evento"
+                            [ngClass]="{
+                                'border-gray-300': !formSubmitted || eventoForm.controls['evento'].valid,
+                                'border-2 border-red-500': formSubmitted && eventoForm.controls['evento'].invalid}"
+                        >
+                        <img *ngIf="formSubmitted && eventoForm.controls['evento'].invalid" src="assets/icons/warning.svg" alt="warning" class="absolute right-4 top-10">
+                    </div>
+
+                    <div class="relative">
+                        <label class="block text-sm font-medium mt-4">Sonido</label>
+                        <select
+                            formControlName="sonido" 
+                            class="w-full border-b-2 focus:outline-none focus:border-blue-500 focus:border-2 p-2 mt-1"
+                            [ngClass]="{
+                                'border-gray-300': !formSubmitted || eventoForm.controls['sonido'].valid, 
+                                'border-2 border-red-500': formSubmitted && eventoForm.controls['sonido'].invalid}"
+                        >
+                            <option>Filter...</option>
+                            <option>Naturaleza</option>
+                            <option>Marcha</option>
+                            <option>Mundial 2014</option>
+                            <option>Olas de mar</option>
+                            <option>Motivación</option>
+                        </select>
+                        <img *ngIf="formSubmitted && eventoForm.controls['evento'].invalid" src="assets/icons/warning.svg" alt="warning" class="absolute right-6 top-10">
+                    </div>
+            
+                </div>
+          
+                <!-- Botones -->
+                <div class="flex justify-between mt-4">
+                    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-sky-700 cursor-pointer">Guardar</button>
+                    <button (click)="closeModal()" class="px-4 py-2 bg-blue-500 rounded text-white hover:bg-sky-700 cursor-pointer">Cancelar</button>
+                </div>
+
+                <div *ngIf="formSubmitted && eventoForm.invalid" class="mt-16 p-2 border-l-4 border border-red-500 rounded flex items-center absolute right-4">
+                    <img src="assets/icons/warning.svg" alt="warning" class="mr-2">
+                    <strong>Error: </strong> Ingrese los campos requeridos
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

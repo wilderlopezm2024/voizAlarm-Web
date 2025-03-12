@@ -1,0 +1,27 @@
+<div class="bg-white shadow-md px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center">
+        <div (click)="navegar('/')" class="flex items-center space-x-2 mr-20 cursor-pointer">
+            <img src="../../../assets/logo.png" alt="Logo" class="h-10" />
+            <span class="text-xl font-semibold">VoizAlarm</span>
+        </div>
+        
+        <nav class="space-x-6 flex">
+            <div class="relative group">
+                <a href="#" class="text-blue-600 hover:text-blue-800">Perfil de usuario</a>
+                <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-lg w-56">
+                  <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Actualización de perfil</a>
+                  <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Preferencias visuales</a>
+                </div>
+            </div>
+            <div class="relative group">
+                <a href="#" class="text-blue-600 hover:text-blue-800">Configuración de Alarmas</a>
+                <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-lg w-56">
+                  <a (click)="navegar('/lista-sonidos')" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">Sonidos por evento</a>
+                  <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Alarmas por ubicación</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+  
+    <a href="#" class="text-blue-600 hover:text-blue-800">Cerrar sesión</a>
+</div>

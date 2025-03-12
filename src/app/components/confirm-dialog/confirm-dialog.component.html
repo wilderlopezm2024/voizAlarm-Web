@@ -1,0 +1,15 @@
+<div class="fixed inset-0 flex items-center justify-center bg-gray-900/50">
+    <div class="bg-white rounded-lg shadow-lg w-96">
+      <!-- Mensaje -->
+      <div class="flex justify-between p-6">
+        <p class="text-gray-900 text-lg">{{ message }}</p>
+        <button class="text-blue-500 text-xl cursor-pointer" (click)="closeModal(false)">×</button>
+      </div>
+  
+      <!-- Botones -->
+      <div class="flex mt-2 mb-4">
+        <button class="w-1/2 py-4 text-white bg-blue-500 text-left px-4 cursor-pointer hover:bg-sky-700" (click)="closeModal(false)">No</button>
+        <button class="w-1/2 py-4 text-white bg-teal-400 text-left px-4 cursor-pointer hover:bg-teal-500" (click)="closeModal(true)">Sí</button>
+      </div>
+    </div>
+  </div>

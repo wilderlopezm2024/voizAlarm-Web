@@ -1,0 +1,75 @@
+<div class="w-full h-[92vh] flex items-center justify-center">
+    <div class="w-4/6">
+        <!-- Título -->
+        <div class="bg-white shadow-lg rounded-xl p-6">
+            <h2 class="text-xl font-semibold text-gray-700">
+                Lista de sonidos según el tipo de evento
+            </h2>
+            <p class="text-sm text-gray-500">Gestionar la lista de sonidos</p>
+        </div>
+      
+        <!-- Tabla de sonidos -->
+        <div class="mt-6 bg-white shadow-lg overflow-hidden rounded-t-xl">
+            <div class="flex justify-end">
+                <button class="p-4 hover:bg-sky-700 cursor-pointer"><img src="assets/icons/search.svg" alt="arrow-left"></button>
+                <button class="p-4 hover:bg-sky-700 cursor-pointer"><img src="assets/icons/lapiz.svg" alt="arrow-left"></button>
+                <button class="p-4 hover:bg-sky-700 cursor-pointer"><img src="assets/icons/settings.svg" alt="arrow-left"></button>
+                <button (click)="openModal(0)" class="px-6 py-4 bg-blue-500 hover:bg-sky-700 cursor-pointer flex text-white flex items-center">
+                    <span class="mr-2">Agregar</span>
+                    <img src="assets/icons/plus.svg" alt="arrow-left">
+                </button>
+            </div>
+            <table class="w-full border-collapse">
+                <thead class="bg-blue-500 text-white">
+                    <tr>
+                        <th class="py-3 px-4 text-left">Evento</th>
+                        <th class="py-3 px-4 text-left">Sonido</th>
+                        <th class="py-3 px-4 text-left">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700">
+                    <tr class="border-b" *ngFor="let sonido of listaSonidos">
+                        <td class="py-3 px-4 w-3/6">{{ sonido.evento }}</td>
+                        <td class="py-3 px-4 w-2/6">{{ sonido.sonido }}</td>
+                        <td class="py-3 px-4 w-1/6">
+                            <button class="text-blue-500 hover:bg-sky-700 cursor-pointer p-2" (click)="openModal(1, sonido)"><img src="assets/icons/lapiz.svg" alt="arrow-left"></button>
+                            <button class="text-red-500 hover:bg-sky-700 ml-2 cursor-pointer p-2" (click)="eliminarSonido(sonido)"><img src="assets/icons/tacho.svg" alt="arrow-left"></button>
+                            <button class="text-red-500 hover:bg-sky-700 ml-2 cursor-pointer p-2" (click)="eliminarSonido(sonido)"><img src="assets/icons/menu-vertical.svg" alt="arrow-left"></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      
+        <!-- Paginación -->
+        <div class="bg-blue-500 flex justify-between items-center rounded-b-xl">
+            <div class="flex items-center pl-4">
+                <p>Items per page: </p>
+                <button class="py-2 px-4 mr-4 border-r hover:bg-sky-700 border-emerald-400 flex cursor-pointer">5 <img src="assets/icons/arrow-outline-down.svg" alt="arrow-left"></button>
+                <p class="text-sm">1 - 100 of 1,228 items</p>
+            </div>
+            <div class="flex items-center">
+                <div class="flex items-center border-x border-emerald-400 pl-2 pr-4">
+                    <button class="p-2 hover:bg-sky-700 flex cursor-pointer">1 <img src="assets/icons/arrow-outline-down.svg" alt="arrow-left"></button>
+                    <p>Of 1 pages</p>
+                </div>
+                <button class="px-4 py-3 border-r hover:bg-sky-700 border-emerald-400 cursor-pointer"><img src="assets/icons/arrow-left.svg" alt="arrow-left"></button>
+                <button class="px-4 py-3 hover:bg-sky-700 cursor-pointer"><img src="assets/icons/arrow-right.svg" alt="arrow-right"></button>
+            </div>
+        </div>
+    </div>
+
+    <app-modal 
+        *ngIf="isModalOpen" 
+        [tipo]="accion" 
+        [sonido]="sonidoSelected" 
+        (close)="closeModal($event)" 
+        (data)="addLista($event)">
+    </app-modal>
+    
+    <app-confirm-dialog 
+        *ngIf="showConfirmDialog" 
+        [message]="messageConfirmDialog" 
+        (onConfirm)="handleConfirm($event)">
+    </app-confirm-dialog>
+</div>
